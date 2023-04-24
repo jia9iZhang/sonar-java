@@ -4,13 +4,14 @@
  */
 package org.sonar.samples.java;
 
+import org.sonar.api.SonarRuntime;
+import org.sonar.api.server.rule.RulesDefinition;
+import org.sonarsource.analyzer.commons.RuleMetadataLoader;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
-import org.sonar.api.SonarRuntime;
-import org.sonar.api.server.rule.RulesDefinition;
-import org.sonarsource.analyzer.commons.RuleMetadataLoader;
 
 /**
  * Declare rule metadata in server repository of rules.

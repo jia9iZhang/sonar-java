@@ -4,7 +4,6 @@
  */
 package org.sonar.samples.java.checks;
 
-import java.util.Locale;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
 import org.sonar.check.Rule;
@@ -13,6 +12,8 @@ import org.sonar.plugins.java.api.JavaFileScannerContext;
 import org.sonar.plugins.java.api.tree.BaseTreeVisitor;
 import org.sonar.plugins.java.api.tree.MethodTree;
 import org.sonar.samples.java.utils.PrinterVisitor;
+
+import java.util.Locale;
 
 @Rule(key = "AvoidBrandInMethodNames")
 public class AvoidBrandInMethodNamesRule extends BaseTreeVisitor implements JavaFileScanner {

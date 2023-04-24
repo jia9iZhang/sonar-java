@@ -5,11 +5,7 @@
 package org.sonar.samples.java;
 
 import org.junit.jupiter.api.Test;
-import org.sonar.api.Plugin;
-import org.sonar.api.SonarEdition;
-import org.sonar.api.SonarProduct;
-import org.sonar.api.SonarQubeSide;
-import org.sonar.api.SonarRuntime;
+import org.sonar.api.*;
 import org.sonar.api.utils.Version;
 
 import static org.assertj.core.api.Assertions.assertThat;

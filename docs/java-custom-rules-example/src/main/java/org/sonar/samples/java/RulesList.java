@@ -4,12 +4,13 @@
  */
 package org.sonar.samples.java;
 
+import org.sonar.plugins.java.api.JavaCheck;
+import org.sonar.samples.java.checks.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import org.sonar.plugins.java.api.JavaCheck;
-import org.sonar.samples.java.checks.*;
 
 public final class RulesList {
 
@@ -45,7 +46,7 @@ public final class RulesList {
    * These rules are going to target TEST code only
    */
   public static List<Class<? extends JavaCheck>> getJavaTestChecks() {
-    return Collections.unmodifiableList(Arrays.asList(
+    return Collections.unmodifiableList(Collections.singletonList(
       NoIfStatementInTestsRule.class));
   }
 }

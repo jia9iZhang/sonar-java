@@ -3,8 +3,6 @@ package org.sonar.samples.java.checks;
 import org.junit.jupiter.api.Test;
 import org.sonar.java.checks.verifier.JavaCheckVerifier;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * 类<code>Doc</code>用于：TODO
  *

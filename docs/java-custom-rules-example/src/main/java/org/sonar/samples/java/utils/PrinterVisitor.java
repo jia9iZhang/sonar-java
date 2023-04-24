@@ -4,11 +4,12 @@
  */
 package org.sonar.samples.java.utils;
 
-import java.util.List;
-import java.util.function.Consumer;
-import javax.annotation.Nullable;
 import org.sonar.plugins.java.api.tree.BaseTreeVisitor;
 import org.sonar.plugins.java.api.tree.Tree;
+
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.function.Consumer;
 
 public class PrinterVisitor extends BaseTreeVisitor {
   private static final int INDENT_SPACES = 2;

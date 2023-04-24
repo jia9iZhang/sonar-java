@@ -4,12 +4,13 @@
  */
 package org.sonar.samples.java.checks;
 
-import java.util.Collections;
-import java.util.List;
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.IssuableSubscriptionVisitor;
 import org.sonar.plugins.java.api.tree.NewClassTree;
 import org.sonar.plugins.java.api.tree.Tree;
+
+import java.util.Collections;
+import java.util.List;
 
 @Rule(key = "AvoidTreeList")
 public class AvoidTreeListRule extends IssuableSubscriptionVisitor {

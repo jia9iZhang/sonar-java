@@ -4,17 +4,13 @@
  */
 package org.sonar.samples.java.checks;
 
-import java.util.Arrays;
-import java.util.List;
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.IssuableSubscriptionVisitor;
-import org.sonar.plugins.java.api.tree.BaseTreeVisitor;
-import org.sonar.plugins.java.api.tree.BlockTree;
-import org.sonar.plugins.java.api.tree.ClassTree;
-import org.sonar.plugins.java.api.tree.IfStatementTree;
-import org.sonar.plugins.java.api.tree.LambdaExpressionTree;
-import org.sonar.plugins.java.api.tree.MethodTree;
-import org.sonar.plugins.java.api.tree.Tree;
+import org.sonar.plugins.java.api.tree.*;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 @Rule(key = "NoIfStatementInTests")
 /**
@@ -29,7 +25,7 @@ public class NoIfStatementInTestsRule extends IssuableSubscriptionVisitor {
    */
   @Override
   public List<Tree.Kind> nodesToVisit() {
-    return Arrays.asList(Tree.Kind.METHOD);
+    return Collections.singletonList(Tree.Kind.METHOD);
   }
 
   @Override

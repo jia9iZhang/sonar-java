@@ -4,10 +4,11 @@
  */
 package org.sonar.samples.java;
 
-import java.util.List;
 import org.sonar.plugins.java.api.CheckRegistrar;
 import org.sonar.plugins.java.api.JavaCheck;
 import org.sonarsource.api.sonarlint.SonarLintSide;
+
+import java.util.List;
 
 /**
  * Provide the "checks" (implementations of rules) classes that are going be executed during

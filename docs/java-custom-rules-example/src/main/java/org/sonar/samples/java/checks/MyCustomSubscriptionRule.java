@@ -4,14 +4,15 @@
  */
 package org.sonar.samples.java.checks;
 
-import java.util.Collections;
-import java.util.List;
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.IssuableSubscriptionVisitor;
 import org.sonar.plugins.java.api.semantic.Symbol.MethodSymbol;
 import org.sonar.plugins.java.api.semantic.Type;
 import org.sonar.plugins.java.api.tree.MethodTree;
 import org.sonar.plugins.java.api.tree.Tree;
+
+import java.util.Collections;
+import java.util.List;
 
 @Rule(key = "AvoidMethodWithSameTypeInArgument")
 /**
