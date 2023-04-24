@@ -19,12 +19,10 @@ import java.util.Set;
  */
 public class MyJavaRulesDefinition implements RulesDefinition {
 
-  // don't change that because the path is hard coded in CheckVerifier
-  private static final String RESOURCE_BASE_PATH = "org/sonar/l10n/java/rules/java";
-
   public static final String REPOSITORY_KEY = "mycompany-java";
   public static final String REPOSITORY_NAME = "MyCompany Custom Repository";
-
+  // don't change that because the path is hard coded in CheckVerifier
+  private static final String RESOURCE_BASE_PATH = "org/sonar/l10n/java/rules/java";
   // Add the rule keys of the rules which need to be considered as template-rules
   private static final Set<String> RULE_TEMPLATES_KEY = Collections.emptySet();
 
@@ -32,6 +30,13 @@ public class MyJavaRulesDefinition implements RulesDefinition {
 
   public MyJavaRulesDefinition(SonarRuntime runtime) {
     this.runtime = runtime;
+  }
+
+  private static void setTemplates(NewRepository repository) {
+    RULE_TEMPLATES_KEY.stream()
+      .map(repository::rule)
+      .filter(Objects::nonNull)
+      .forEach(rule -> rule.setTemplate(true));
   }
 
   @Override
@@ -45,12 +50,5 @@ public class MyJavaRulesDefinition implements RulesDefinition {
     setTemplates(repository);
 
     repository.done();
-  }
-
-  private static void setTemplates(NewRepository repository) {
-    RULE_TEMPLATES_KEY.stream()
-      .map(repository::rule)
-      .filter(Objects::nonNull)
-      .forEach(rule -> rule.setTemplate(true));
   }
 }

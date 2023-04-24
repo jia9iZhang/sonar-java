@@ -27,6 +27,7 @@ public class SpringControllerRequestMappingEntityRule extends BaseTreeVisitor im
 
   /**
    * Overriding the visitor method to implement the logic of the rule.
+   *
    * @param tree AST of the visited method.
    */
   @Override

@@ -29,6 +29,7 @@ public class AvoidMethodDeclarationRule extends BaseTreeVisitor implements JavaF
 
   /**
    * Implementation of the method of the JavaFileScanner interface.
+   *
    * @param context Object used to attach issues to source file.
    */
   @Override
@@ -41,6 +42,7 @@ public class AvoidMethodDeclarationRule extends BaseTreeVisitor implements JavaF
 
   /**
    * Overriding the visitor method to implement the logic of the rule.
+   *
    * @param tree AST of the visited method.
    */
   @Override

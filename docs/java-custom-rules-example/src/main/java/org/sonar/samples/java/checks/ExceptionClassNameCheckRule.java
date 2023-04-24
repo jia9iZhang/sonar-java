@@ -20,6 +20,7 @@ import java.util.List;
 public class ExceptionClassNameCheckRule extends IssuableSubscriptionVisitor {
 
   private static final String DEFAULT_EXCEPTION_SUFFIX = "Exception";
+
   @Override
   public List<Tree.Kind> nodesToVisit() {
     return Collections.singletonList(Tree.Kind.CLASS);

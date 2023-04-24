@@ -16,9 +16,6 @@ import java.util.List;
 public class AvoidAnnotationRule extends BaseTreeVisitor implements JavaFileScanner {
 
   private static final String DEFAULT_VALUE = "Inject";
-
-  private JavaFileScannerContext context;
-
   /**
    * Name of the annotation to avoid. Value can be set by users in Quality profiles.
    * The key
@@ -27,6 +24,7 @@ public class AvoidAnnotationRule extends BaseTreeVisitor implements JavaFileScan
     defaultValue = DEFAULT_VALUE,
     description = "Name of the annotation to avoid, without the prefix @, for instance 'Override'")
   protected String name;
+  private JavaFileScannerContext context;
 
   @Override
   public void scanFile(JavaFileScannerContext context) {

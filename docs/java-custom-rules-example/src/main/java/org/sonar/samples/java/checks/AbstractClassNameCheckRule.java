@@ -11,8 +11,8 @@ import java.util.List;
 
 /**
  * 类<code>Doc</code>用于：
- *     抽象类命名使用 Abstract 或 Base 开头
- *     抽象类名不能只使用 Abstract 或 Base 开头
+ * 抽象类命名使用 Abstract 或 Base 开头
+ * 抽象类名不能只使用 Abstract 或 Base 开头
  *
  * @author jiaqi.zhang
  * @version 1.0
@@ -22,7 +22,6 @@ import java.util.List;
 public class AbstractClassNameCheckRule extends IssuableSubscriptionVisitor {
   private static final String ABSTRACT_PREFIX = "Abstract";
   private static final String BASE_PREFIX = "Base";
-
 
 
   @Override
@@ -38,8 +37,8 @@ public class AbstractClassNameCheckRule extends IssuableSubscriptionVisitor {
 
     if (symbol.isAbstract() && !className.startsWith(ABSTRACT_PREFIX) && !className.startsWith(BASE_PREFIX)) {
       reportIssue(abstractClass.simpleName(), "抽象类命名使用 Abstract 或 Base 开头");
-    }else{
-      if (className.length()==ABSTRACT_PREFIX.length()||className.length()==BASE_PREFIX.length()){
+    } else {
+      if (className.length() == ABSTRACT_PREFIX.length() || className.length() == BASE_PREFIX.length()) {
         reportIssue(abstractClass.simpleName(), "抽象类名不能只使用 Abstract 或 Base 开头");
       }
     }

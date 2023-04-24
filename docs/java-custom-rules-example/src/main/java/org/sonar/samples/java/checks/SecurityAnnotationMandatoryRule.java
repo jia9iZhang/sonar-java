@@ -20,15 +20,27 @@ public class SecurityAnnotationMandatoryRule extends BaseTreeVisitor implements 
   private static final Logger LOGGER = Loggers.get(SecurityAnnotationMandatoryRule.class);
 
   private static final String DEFAULT_VALUE = "MySecurityAnnotation";
-
-  private boolean implementsSpecificInterface = false;
-
-  private JavaFileScannerContext context;
-
   @RuleProperty(
     defaultValue = DEFAULT_VALUE,
     description = "Name of the mandatory annotation")
   protected String name;
+  private boolean implementsSpecificInterface = false;
+  private JavaFileScannerContext context;
+
+  private static void printPackageName(ExpressionTree packageName) {
+    StringBuilder sb = new StringBuilder();
+    ExpressionTree expr = packageName;
+    while (expr.is(Tree.Kind.MEMBER_SELECT)) {
+      MemberSelectExpressionTree mse = (MemberSelectExpressionTree) expr;
+      sb.insert(0, mse.identifier().name());
+      sb.insert(0, mse.operatorToken().text());
+      expr = mse.expression();
+    }
+    IdentifierTree idt = (IdentifierTree) expr;
+    sb.insert(0, idt.name());
+
+    LOGGER.debug("PackageName: {}", sb);
+  }
 
   @Override
   public void scanFile(JavaFileScannerContext context) {
@@ -57,21 +69,6 @@ public class SecurityAnnotationMandatoryRule extends BaseTreeVisitor implements 
     }
 
     super.visitCompilationUnit(tree);
-  }
-
-  private static void printPackageName(ExpressionTree packageName) {
-    StringBuilder sb = new StringBuilder();
-    ExpressionTree expr = packageName;
-    while (expr.is(Tree.Kind.MEMBER_SELECT)) {
-      MemberSelectExpressionTree mse = (MemberSelectExpressionTree) expr;
-      sb.insert(0, mse.identifier().name());
-      sb.insert(0, mse.operatorToken().text());
-      expr = mse.expression();
-    }
-    IdentifierTree idt = (IdentifierTree) expr;
-    sb.insert(0, idt.name());
-
-    LOGGER.debug("PackageName: {}", sb);
   }
 
   @Override

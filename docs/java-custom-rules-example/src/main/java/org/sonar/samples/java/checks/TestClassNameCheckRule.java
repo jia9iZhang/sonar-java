@@ -30,7 +30,7 @@ public class TestClassNameCheckRule extends IssuableSubscriptionVisitor {
     ClassTree testClass = (ClassTree) tree;
     String className = testClass.simpleName().name();
 
-    if (!className.endsWith(TEST_SUFFIX)){
+    if (!className.endsWith(TEST_SUFFIX)) {
       reportIssue(testClass.simpleName(), "测试类命名以它要测试的类的名称开始，以 Test 结尾。");
     }
   }

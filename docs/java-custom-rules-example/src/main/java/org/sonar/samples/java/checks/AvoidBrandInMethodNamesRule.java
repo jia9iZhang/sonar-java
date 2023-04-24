@@ -18,11 +18,9 @@ import java.util.Locale;
 @Rule(key = "AvoidBrandInMethodNames")
 public class AvoidBrandInMethodNamesRule extends BaseTreeVisitor implements JavaFileScanner {
 
-  private static final Logger LOGGER = Loggers.get(AvoidBrandInMethodNamesRule.class);
-
-  private JavaFileScannerContext context;
-
   protected static final String COMPANY_NAME = "MyCompany";
+  private static final Logger LOGGER = Loggers.get(AvoidBrandInMethodNamesRule.class);
+  private JavaFileScannerContext context;
 
   @Override
   public void scanFile(JavaFileScannerContext context) {
@@ -38,6 +36,7 @@ public class AvoidBrandInMethodNamesRule extends BaseTreeVisitor implements Java
 
   /**
    * Overriding the visitor method to implement the logic of the rule.
+   *
    * @param tree AST of the visited method.
    */
   @Override

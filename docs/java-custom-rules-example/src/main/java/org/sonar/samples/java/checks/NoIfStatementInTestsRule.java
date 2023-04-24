@@ -20,6 +20,15 @@ public class NoIfStatementInTestsRule extends IssuableSubscriptionVisitor {
   private final BaseTreeVisitor ifStatementVisitor = new IfStatementVisitor();
 
   /**
+   * Checks that a give method is annotated with JUnit4 'org.junit.Test' annotation
+   */
+  private static boolean isJunit4TestMethod(MethodTree method) {
+    return method.symbol()
+      .metadata()
+      .isAnnotatedWith("org.junit.Test");
+  }
+
+  /**
    * Unit tests are special methods, so we are just going to visit all of them.
    */
   @Override
@@ -40,15 +49,6 @@ public class NoIfStatementInTestsRule extends IssuableSubscriptionVisitor {
       return;
     }
     block.accept(ifStatementVisitor);
-  }
-
-  /**
-   * Checks that a give method is annotated with JUnit4 'org.junit.Test' annotation
-   */
-  private static boolean isJunit4TestMethod(MethodTree method) {
-    return method.symbol()
-      .metadata()
-      .isAnnotatedWith("org.junit.Test");
   }
 
   private class IfStatementVisitor extends BaseTreeVisitor {
