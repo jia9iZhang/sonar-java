@@ -1,0 +1,15 @@
+<p>ExceptionClassNameCheckRule Check</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+    public class Exception {// Noncompliant
+    }
+
+    public class ExceptionMysql {// Noncompliant
+    }
+
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+    public class MysqlException {
+    }
+</pre>
