@@ -27,32 +27,11 @@ public class AbstractClassNameCheckRule extends IssuableSubscriptionVisitor {
   @Override
   public void visitNode(Tree tree) {
     ClassTree abstractClass = (ClassTree) tree;
-
     String className = abstractClass.simpleName().name();
-
-    //判断是否是抽象类
-    if (abstractClass.symbol().isAbstract()) {
-      String abName = "Abstract";
-      String bsName = "Base";
-      //判断是否已Abstract 或 Base 开头
-      if (className.length() < abName.length() || className.length() < bsName.length()) {
-        reportIssue(tree, "The Name Of Abstract Class should use Abstract or Base first");
-      } else {
-        //判断是否存在 Abstract 或 Base
-        if (!className.contains(abName)) {
-          if (!className.contains(bsName)) {
-            reportIssue(tree, "The Name Of Abstract Class should use Abstract or Base first");
-          } else {
-            if (className.indexOf(bsName) != 0) {
-              reportIssue(tree, "The Name Of Abstract Class should use Abstract or Base first");
-            }
-          }
-        } else {
-          if (className.indexOf(abName) != 0) {
-            reportIssue(tree, "The Name Of Abstract Class should use Abstract or Base first");
-          }
-        }
-      }
+    Symbol.TypeSymbol symbol = classTree.symbol();
+    
+    if (symbol.isAbstract() && !className.startsWith(ABSTRACT_PREFIX) && !className.startsWith(BASE_PREFIX)) {
+      reportIssue(classTree.simpleName(), "Abstract class name should start with 'Abstract' or 'Base'");
     }
   }
 }
