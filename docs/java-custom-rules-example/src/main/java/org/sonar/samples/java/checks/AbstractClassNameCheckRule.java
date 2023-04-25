@@ -1,5 +1,6 @@
 package org.sonar.samples.java.checks;
 
+import org.apache.commons.lang3.StringUtils;
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.IssuableSubscriptionVisitor;
 import org.sonar.plugins.java.api.semantic.Symbol;
@@ -20,9 +21,9 @@ import java.util.List;
  */
 @Rule(key = "AbstractClassNameCheckRule")
 public class AbstractClassNameCheckRule extends IssuableSubscriptionVisitor {
+
   private static final String ABSTRACT_PREFIX = "Abstract";
   private static final String BASE_PREFIX = "Base";
-
 
   @Override
   public List<Tree.Kind> nodesToVisit() {
@@ -35,8 +36,10 @@ public class AbstractClassNameCheckRule extends IssuableSubscriptionVisitor {
     String className = abstractClass.simpleName().name();
     Symbol symbol = abstractClass.symbol();
 
-    if (symbol.isAbstract() && !className.startsWith(ABSTRACT_PREFIX) && !className.startsWith(BASE_PREFIX)) {
-      reportIssue(abstractClass.simpleName(), "抽象类命名使用 Abstract 或 Base 开头");
+    if (symbol.isAbstract()) {
+      if (!StringUtils.startsWith(className, ABSTRACT_PREFIX) && !StringUtils.startsWith(className, BASE_PREFIX)) {
+        reportIssue(abstractClass.simpleName(), "抽象类命名使用 Abstract 或 Base 开头");
+      }
     } else {
       if (className.length() == ABSTRACT_PREFIX.length() || className.length() == BASE_PREFIX.length()) {
         reportIssue(abstractClass.simpleName(), "抽象类名不能只使用 Abstract 或 Base 开头");
@@ -44,3 +47,4 @@ public class AbstractClassNameCheckRule extends IssuableSubscriptionVisitor {
     }
   }
 }
+

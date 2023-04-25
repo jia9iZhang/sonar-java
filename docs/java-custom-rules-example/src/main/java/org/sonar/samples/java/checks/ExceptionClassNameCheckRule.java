@@ -1,5 +1,6 @@
 package org.sonar.samples.java.checks;
 
+import org.apache.commons.lang3.StringUtils;
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.IssuableSubscriptionVisitor;
 import org.sonar.plugins.java.api.semantic.Symbol;
@@ -32,7 +33,7 @@ public class ExceptionClassNameCheckRule extends IssuableSubscriptionVisitor {
     String className = exceptionClass.simpleName().name();
     Symbol symbol = exceptionClass.symbol();
 
-    if (symbol.type().isSubtypeOf("Exception") && !className.endsWith(DEFAULT_EXCEPTION_SUFFIX)) {
+    if (symbol.type().isSubtypeOf(DEFAULT_EXCEPTION_SUFFIX) && !StringUtils.endsWith(className, DEFAULT_EXCEPTION_SUFFIX)) {
       reportIssue(exceptionClass.simpleName(), "异常类命名使用 Exception 结尾");
     }
   }
