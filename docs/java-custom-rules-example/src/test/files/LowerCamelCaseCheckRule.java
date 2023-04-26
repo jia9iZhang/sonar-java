@@ -1,27 +1,21 @@
-//class LowerCamelCase1 {
-//  String instanceVariable;
-//  void methodName(String paramName) {
-//    String localVariable = null;
-//  }
-//}
-//
-//class LowerCamelCase2 {
-//  String InstanceVariable;
-//  void MethodName(String ParamName) {
-//    String LocalVariable = null;
-//  }
-//}
-//
-//class LowerCamelCase2 {
-//  String Instancevariable;
-//  void Methodname(String Paramname) {
-//    String Localvariable = null;
-//  }
-//}
+class LowerCamelCase1 {
+  String instanceVariable; // compliant
+  String instancevariable; // compliant
+  String InstanceVariable; // Noncompliant
+  String Instancevariable; // Noncompliant
+  void methodName(String paramName) {// compliant
+    String localVariable = null;// compliant
+  }
 
-class LowerCamelCase2 {
-  String instancevariable;
-  void methodname(String paramname) {
-    String localvariable = null;
+  void MethodName(String ParamName) {// Noncompliant
+    String LocalVariable = null;// Noncompliant
+  }
+
+  void Methodname(String Paramname) {// Noncompliant
+    String Localvariable = null;// Noncompliant
+  }
+
+  void methodname(String paramname) {// compliant
+    String localvariable = null;// compliant
   }
 }
