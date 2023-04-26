@@ -1,14 +1,24 @@
-public abstract class AbstractEmployee {
+public abstract class AbstractEmployee {// Compliant
 }
 
-public abstract class Abstract {
+public abstract class Abstract {// Compliant
 }
 
-public abstract class Employee {
+public abstract class BaseEmployee {// Compliant
 }
 
-public abstract class BaseEmployee {
+public abstract class Base {// Compliant
 }
 
-public abstract class Base {
+public abstract class EmployeeAbstract {// Noncompliant
 }
+
+
+public abstract class Employee {// Noncompliant
+}
+
+
+public abstract class EmployeeBase {// Noncompliant
+}
+
+

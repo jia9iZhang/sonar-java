@@ -20,7 +20,7 @@ import java.util.List;
 @Rule(key = "ExceptionClassNameCheckRule")
 public class ExceptionClassNameCheckRule extends IssuableSubscriptionVisitor {
 
-  private static final String DEFAULT_EXCEPTION_SUFFIX = "Exception";
+  private static final String DEFAULT_EXCEPTION_SUFFIX = "java.lang.Exception";
 
   @Override
   public List<Tree.Kind> nodesToVisit() {
@@ -33,7 +33,7 @@ public class ExceptionClassNameCheckRule extends IssuableSubscriptionVisitor {
     String className = exceptionClass.simpleName().name();
     Symbol symbol = exceptionClass.symbol();
 
-    if (symbol.type().isSubtypeOf(DEFAULT_EXCEPTION_SUFFIX) && !StringUtils.endsWith(className, DEFAULT_EXCEPTION_SUFFIX)) {
+    if (!StringUtils.endsWith(className, "Exception") && symbol.type().isSubtypeOf(DEFAULT_EXCEPTION_SUFFIX)) {
       reportIssue(exceptionClass.simpleName(), "异常类命名使用 Exception 结尾");
     }
   }
