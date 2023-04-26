@@ -36,36 +36,37 @@ public class LowerCamelCaseCheckRule extends IssuableSubscriptionVisitor {
     ClassTree classTree = (ClassTree) tree;
     List<Tree> members = classTree.members();
     if (!members.isEmpty()) {
-      for (Tree member : members) {
-        //解析成员变量树
+      members.forEach(member -> {
         if (member.is(Tree.Kind.VARIABLE)) {
           VariableTreeImpl variableTree = (VariableTreeImpl) member;
-          if (!isLowerCamelCase(variableTree.symbol().name())) {
+          String name = variableTree.symbol().name();
+          if (!isLowerCamelCase(name)) {
             reportIssue(classTree.simpleName(), ERROR_MESSAGE);
           }
-        } else {
-          //解析方法树
+        } else if (member.is(Tree.Kind.METHOD)) {
           MethodTreeImpl methodTree = (MethodTreeImpl) member;
-          if (!isLowerCamelCase(methodTree.simpleName().name())) {
+          String methodName = methodTree.simpleName().name();
+          if (!isLowerCamelCase(methodName)) {
             reportIssue(classTree.simpleName(), ERROR_MESSAGE);
           }
           methodTree.parameters().forEach(parameter -> {
-            if (!isLowerCamelCase(parameter.simpleName().name())) {
+            String parameterName = parameter.simpleName().name();
+            if (!isLowerCamelCase(parameterName)) {
               reportIssue(classTree.simpleName(), ERROR_MESSAGE);
             }
           });
-          //解析局部成员变量树
           BlockTree blockTree = methodTree.block();
-          for (StatementTree statementTree : blockTree.body()) {
-            if (statementTree.is(Tree.Kind.VARIABLE)){
+          blockTree.body().forEach(statementTree -> {
+            if (statementTree.is(Tree.Kind.VARIABLE)) {
               VariableTreeImpl variableTree = (VariableTreeImpl) statementTree;
-              if (isLowerCamelCase(variableTree.simpleName().name())){
+              String name = variableTree.simpleName().name();
+              if (!isLowerCamelCase(name)) {
                 reportIssue(classTree.simpleName(), ERROR_MESSAGE);
               }
             }
-          }
+          });
         }
-      }
+      });
     }
   }
 
